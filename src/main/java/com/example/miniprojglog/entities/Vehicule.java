@@ -17,7 +17,7 @@ import java.util.List;
 public class Vehicule {
 
     @Id
-    private String MatriculeV;
+    private Long MatriculeV;
 
     private String Marque;
 

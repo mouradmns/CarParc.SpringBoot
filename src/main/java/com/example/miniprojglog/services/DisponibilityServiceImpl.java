@@ -21,12 +21,13 @@ public class DisponibilityServiceImpl implements DisponibilityService {
 
 
     @Override
-    public List<Conducteur> ConducteurDisponible(Date dateDebut, Date dateFin) {
-        return disponibilityRepo.conducteurDisponible(dateDebut, dateFin);
+    public Conducteur ConducteurDisponible(Long matriculeC,Date dateDebut, Date dateFin) {
+        return disponibilityRepo.conducteurDisponible(matriculeC,dateDebut, dateFin);
     }
 
     @Override
-    public List<Vehicule> VehiculeDisponible(Date dateDebut, Date dateFin) {
-        return null;
+    public List<Conducteur> ConducteursDisponible( Date dateDebut, Date dateFin) {
+        return disponibilityRepo.conducteursDisponible(dateDebut,dateFin);
     }
+
 }

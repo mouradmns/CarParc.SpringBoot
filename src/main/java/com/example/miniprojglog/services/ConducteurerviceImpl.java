@@ -19,26 +19,29 @@ public class ConducteurerviceImpl implements ConducteurService {
 
     @Override
     public Conducteur saveConducteur(Conducteur conducteur) {
+
         return conducteurRepo.save(conducteur);
     }
 
     @Override
     public Conducteur updateConducteur(Conducteur conducteur) {
-        return null;
+        return conducteurRepo.save(conducteur);
     }
 
     @Override
     public Conducteur deleteConducteur(Long matriculeC) {
-        return null;
+        Conducteur toDeleteCOnd=conducteurRepo.getReferenceById(matriculeC);
+        conducteurRepo.delete(toDeleteCOnd);
+        return toDeleteCOnd;
     }
 
     @Override
     public Conducteur getConducteurById(Long matriculeC) {
-        return null;
+        return conducteurRepo.getReferenceById(matriculeC);
     }
 
     @Override
     public List<Conducteur> listConducteurs() {
-        return null;
+        return conducteurRepo.findAll();
     }
 }

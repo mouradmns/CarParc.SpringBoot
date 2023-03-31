@@ -39,10 +39,8 @@ public class ConducteurRestController {
 
     @PutMapping("/conducteurs/{Conducteurid}")
     public ResponseEntity<Conducteur> updateConducteur(@PathVariable Long conducteurId,@RequestBody Conducteur conducteur) {
-
         conducteur.setMatriculeC(conducteurId);
         Conducteur updatedConducteur=conducteurService.updateConducteur(conducteur);
-
         return ResponseEntity.ok(updatedConducteur);
     }
 
@@ -50,9 +48,7 @@ public class ConducteurRestController {
 
     @DeleteMapping("/conducteurs/{Conducteurid}")
     public ResponseEntity<Conducteur> deleteConducteur(@PathVariable Long conducteurId) {
-
         Conducteur deletedCond=conducteurService.deleteConducteur(conducteurId);
-
         return ResponseEntity.ok(deletedCond);
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DisponibilityService {
 
+    Conducteur ConducteurDisponible(Long matriculeC,Date dateDebut, Date dateFin);
 
-    List<Conducteur> ConducteurDisponible(Date dateDebut, Date dateFin);
-    List<Vehicule> VehiculeDisponible(Date dateDebut, Date dateFin);
+    List<Conducteur> ConducteursDisponible(Date dateDebut, Date dateFin);
 }

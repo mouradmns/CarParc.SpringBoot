@@ -17,7 +17,14 @@ public interface DisponibilityRepo extends JpaRepository<Voyage, UUID> {
 
     @Query("SELECT DISTINCT Conducteur  FROM Conducteur c join c.voyages v" +
                 " WHERE Conducteur NOT IN (SELECT Conducteur FROM Voyage v WHERE v.DateDebut <= :dateDebut AND v.DateFin >= :dateFin)")
-        List<Conducteur> conducteurDisponible(@Param("dateDebut") Date dateDebut,
+        List<Conducteur> conducteursDisponible(@Param("dateDebut") Date dateDebut,
                                               @Param("dateFin") Date dateFin);
+
+
+    @Query("SELECT DISTINCT Conducteur  FROM Conducteur c join c.voyages v" +
+            " WHERE c.MatriculeC =:matriculeC AND Conducteur NOT IN (SELECT Conducteur FROM Voyage v WHERE v.DateDebut <= :dateDebut AND v.DateFin >= :dateFin)")
+     Conducteur conducteurDisponible(  @Param("matriculeC") Long matriculeC,
+                                            @Param("dateDebut") Date dateDebut,
+                                           @Param("dateFin") Date dateFin);
 
 }
