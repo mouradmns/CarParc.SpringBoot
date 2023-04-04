@@ -1,14 +1,16 @@
 package com.example.miniprojglog.services;
 
-import com.example.miniprojglog.entities.Conducteur;
-import com.example.miniprojglog.entities.Vehicule;
+import com.example.miniprojglog.entities.Driver;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public interface DisponibilityService {
 
-    Conducteur ConducteurDisponible(Long matriculeC,Date dateDebut, Date dateFin);
+    Driver disponibleDriver(Long driverId, LocalDate dateDebut, LocalDate dateFin);
 
-    List<Conducteur> ConducteursDisponible(Date dateDebut, Date dateFin);
+    List<Driver> disponibleDrivers(LocalDate dateDebut,LocalDate dateFin);
+
+
 }

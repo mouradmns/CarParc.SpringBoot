@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ public class Permis{
     private UUID NumPermis;
 
     @OneToOne(mappedBy ="permis",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Conducteur  conducteur;
+    private Driver driver;
 
 
     @OneToMany(mappedBy ="permis",cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -3,7 +3,6 @@ package com.example.miniprojglog.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,16 +13,19 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vehicule {
+public class Vehicle {
 
     @Id
-    private Long MatriculeV;
+    private Long vehicleId;
 
-    private String Marque;
+    private String marque;
 
-    private String Modele;
+    private String modele;
+
+    private Boolean availableVehicle;
 
 
-    @OneToMany(mappedBy = "vehicule")
-    private List<Voyage> voyages;
+    @OneToMany(mappedBy = "vehicle")
+    private List<Trip> trips;
+
 }

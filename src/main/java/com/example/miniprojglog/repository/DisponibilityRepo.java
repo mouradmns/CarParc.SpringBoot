@@ -1,7 +1,7 @@
 package com.example.miniprojglog.repository;
 
-import com.example.miniprojglog.entities.Conducteur;
-import com.example.miniprojglog.entities.Voyage;
+import com.example.miniprojglog.entities.Driver;
+import com.example.miniprojglog.entities.Trip;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,18 +13,18 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface DisponibilityRepo extends JpaRepository<Voyage, UUID> {
+public interface DisponibilityRepo extends JpaRepository<Trip, UUID> {
 
-    @Query("SELECT DISTINCT Conducteur  FROM Conducteur c join c.voyages v" +
-                " WHERE Conducteur NOT IN (SELECT Conducteur FROM Voyage v WHERE v.DateDebut <= :dateDebut AND v.DateFin >= :dateFin)")
-        List<Conducteur> conducteursDisponible(@Param("dateDebut") Date dateDebut,
-                                              @Param("dateFin") Date dateFin);
+    @Query("SELECT DISTINCT Driver  FROM Driver d join d.trips t" +
+                " WHERE Driver NOT IN (SELECT Driver FROM Trip t WHERE t.DateDebut <= :dateDebut AND t.DateFin >= :dateFin)")
+        List<Driver> disponibleDrivers(@Param("dateDebut") LocalDate dateDebut,
+                                       @Param("dateFin") LocalDate dateFin);
 
 
-    @Query("SELECT DISTINCT Conducteur  FROM Conducteur c join c.voyages v" +
-            " WHERE c.MatriculeC =:matriculeC AND Conducteur NOT IN (SELECT Conducteur FROM Voyage v WHERE v.DateDebut <= :dateDebut AND v.DateFin >= :dateFin)")
-     Conducteur conducteurDisponible(  @Param("matriculeC") Long matriculeC,
-                                            @Param("dateDebut") Date dateDebut,
-                                           @Param("dateFin") Date dateFin);
+    @Query("SELECT DISTINCT Driver  FROM Driver d join d.trips v" +
+            " WHERE d.driverId =:matriculeC AND Driver NOT IN (SELECT Driver FROM Trip v WHERE v.DateDebut <= :dateDebut AND v.DateFin >= :dateFin)")
+    Driver disponibleDriver(@Param("matriculeC") Long matriculeC,
+                                @Param("dateDebut") LocalDate dateDebut,
+                                @Param("dateFin") LocalDate dateFin);
 
 }

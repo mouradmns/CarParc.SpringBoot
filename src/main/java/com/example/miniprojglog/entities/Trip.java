@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,18 +18,18 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Voyage {
+public class Trip {
     @Id
-    private UUID  NumVoyage;
+    private Long  tripId;
 
-    private Date DateDebut;
-    private Date DateFin;
+    private LocalDate DateDebut;
+    private LocalDate DateFin;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Conducteur conducteur;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Vehicule vehicule;
+    private Driver driver;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vehicle vehicle;
 
 }

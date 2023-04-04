@@ -13,11 +13,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Conducteur {
+public class Driver {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long MatriculeC;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long driverId;
 
     private String Cin;
     private String name;
@@ -30,7 +30,7 @@ public class Conducteur {
     private Permis permis;
 
 
-    @OneToMany(mappedBy = "conducteur")
-    private List<Voyage> voyages;
+    @OneToMany(mappedBy = "driver")
+    private List<Trip> trips;
 }
 
