@@ -1,4 +1,4 @@
-package com.example.miniprojglog.services;
+package com.example.miniprojglog.services.Interfaces;
 
 import com.example.miniprojglog.entities.Driver;
 import org.springframework.stereotype.Service;

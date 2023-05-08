@@ -1,7 +1,7 @@
 package com.example.miniprojglog.web;
 
 import com.example.miniprojglog.entities.Vehicle;
-import com.example.miniprojglog.services.VehiclesService;
+import com.example.miniprojglog.services.Interfaces.VehiclesService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class VehicleController {
         @GetMapping("/vehicles")
     public List<Vehicle> reticules() {
         log.info("-=________controller");
-            return vehiclesService.listvheicules();
+            return vehiclesService.listVehicules();
     }
     @PostMapping("/vehicles")
     public ResponseEntity<Vehicle> saveReticule(@RequestBody Vehicle vehicle) {
 
-            Vehicle savedVehicle = vehiclesService.saveVheicule(vehicle);
+            Vehicle savedVehicle = vehiclesService.saveVehicule(vehicle);
 
         return ResponseEntity.ok(savedVehicle);
     }
@@ -39,7 +39,7 @@ public class VehicleController {
     public Optional<Vehicle> getVehicle(@PathVariable Long id) {
 
 
-        return vehiclesService.getVheiculebyId(id) ;
+        return vehiclesService.getVehiculebyId(id) ;
     }
 
 
@@ -48,7 +48,7 @@ public class VehicleController {
     public ResponseEntity<Vehicle> updateVehicle(@PathVariable Long id, @RequestBody Vehicle vehicle) {
 
         vehicle.setVehicleId(id);
-        Vehicle updatedvehicle =vehiclesService.updateVheicule(vehicle);
+        Vehicle updatedvehicle =vehiclesService.updateVehicule(vehicle);
         return ResponseEntity.ok(updatedvehicle);
     }
 
@@ -56,7 +56,7 @@ public class VehicleController {
 
     @DeleteMapping("/vehicles/{id}")
     public ResponseEntity<Vehicle> deleteVehicle(@PathVariable Long id) {
-        Vehicle deletedVehicle=vehiclesService.deleteVheicule(id);
+        Vehicle deletedVehicle=vehiclesService.deleteVehicule(id);
         return ResponseEntity.ok(deletedVehicle);
     }
 

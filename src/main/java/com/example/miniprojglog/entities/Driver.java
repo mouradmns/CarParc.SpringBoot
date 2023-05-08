@@ -32,5 +32,9 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     private List<Trip> trips;
+
+    @OneToMany()
+    private List<Repos> repos;
+
 }
 

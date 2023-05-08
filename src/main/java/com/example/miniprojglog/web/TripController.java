@@ -1,9 +1,8 @@
 package com.example.miniprojglog.web;
 
 
-import com.example.miniprojglog.entities.Driver;
 import com.example.miniprojglog.entities.Trip;
-import com.example.miniprojglog.services.TripService;
+import com.example.miniprojglog.services.Interfaces.TripService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +53,9 @@ public class TripController {
 
 
     @DeleteMapping("/trips/{id}")
-    public ResponseEntity<Trip> deleteTrip(@PathVariable Long id) {
-        Trip deletedTrip= tripService.deleteTrip(id);
-        return ResponseEntity.ok(deletedTrip);
+    public void deleteTrip(@PathVariable Long id) {
+         tripService.deleteTripById(id);
+
     }
 
 

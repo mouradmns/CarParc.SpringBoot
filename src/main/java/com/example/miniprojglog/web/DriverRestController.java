@@ -2,7 +2,7 @@ package com.example.miniprojglog.web;
 
 
 import com.example.miniprojglog.entities.Driver;
-import com.example.miniprojglog.services.DriverService;
+import com.example.miniprojglog.services.Interfaces.DriverService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class DriverRestController {
 
     @PutMapping("/drivers/{id}")
     public ResponseEntity<Driver> updateDriver(@PathVariable Long id, @RequestBody Driver driver) {
-        driver.setMatriculeC(id);
+        driver.setDriverId(id);
         Driver updatedDriver = driverService.updateDriver(driver);
         return ResponseEntity.ok(updatedDriver);
     }

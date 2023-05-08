@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface VehicleRepo extends JpaRepository<Vehicle, Long> {
 
-    public List<Vehicle> listOfAvailableVehicules();
 }

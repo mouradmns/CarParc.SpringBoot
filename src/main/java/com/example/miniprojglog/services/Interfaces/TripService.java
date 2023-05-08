@@ -1,6 +1,5 @@
-package com.example.miniprojglog.services;
+package com.example.miniprojglog.services.Interfaces;
 
-import com.example.miniprojglog.entities.Vehicle;
 import com.example.miniprojglog.entities.Trip;
 
 import java.util.List;
@@ -10,7 +9,7 @@ public interface TripService {
 
     Trip saveTrip(Trip trip);
     Trip updateTrip(Trip trip);
-    Trip deleteTrip(Long tripId);
+    void deleteTripById(Long tripId);
     Optional<Trip> getTripById(Long idTrip);
     List<Trip> listTrips();
 

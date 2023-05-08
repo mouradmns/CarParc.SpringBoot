@@ -2,6 +2,7 @@ package com.example.miniprojglog.services;
 
 import com.example.miniprojglog.entities.Driver;
 import com.example.miniprojglog.repository.DriverRepo;
+import com.example.miniprojglog.services.Interfaces.DriverService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

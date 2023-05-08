@@ -2,6 +2,7 @@ package com.example.miniprojglog.services;
 
 import com.example.miniprojglog.entities.Trip;
 import com.example.miniprojglog.repository.TripRepo;
+import com.example.miniprojglog.services.Interfaces.TripService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Transactional
 @Slf4j
-public class TripSericeImpl implements TripService{
+public class TripServiceImpl implements TripService {
 
 
      @Autowired
@@ -32,15 +33,14 @@ public class TripSericeImpl implements TripService{
     }
 
     @Override
-    public Trip deleteTrip(Long tripId) {
-
-         Optional<Trip> toDeleteTrip  = tripRepo.findById(tripId);
-
-        return tripRepo.delete(toDeleteTrip);
+    public void deleteTripById(Long tripId) {
+        tripRepo.deleteById(tripId);
     }
+
 
     @Override
     public Optional<Trip> getTripById(Long tripId) {
+
         return tripRepo.findById(tripId);
     }
 

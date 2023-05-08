@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,18 +16,14 @@ import java.util.UUID;
 public class TypePermis {
 
     @Id
-    private UUID idTypePermis;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idTypePermis;
 
-    private Date DateObtention;
+   private LocalDate ExpirationDate;
 
-    Short DureeDeVie;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "my_tpe")
-    private ClassificationPermis typedePermis ;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-     private Permis permis;
+        private ClassificationPermis typedePermis ;
 
 
 }

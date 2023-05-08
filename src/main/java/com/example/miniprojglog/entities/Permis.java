@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,13 +16,10 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Permis{
     @Id
-    private UUID NumPermis;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long NumPermis;
 
-    @OneToOne(mappedBy ="permis",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Driver driver;
-
-
-    @OneToMany(mappedBy ="permis",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TypePermis> lesPermis;
 
 

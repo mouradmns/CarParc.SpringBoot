@@ -1,7 +1,7 @@
 package com.example.miniprojglog;
 
 import com.example.miniprojglog.entities.Vehicle;
-import com.example.miniprojglog.services.VehiclesService;
+import com.example.miniprojglog.services.Interfaces.VehiclesService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +18,7 @@ public class MiniProjGlogApplication {
     }
 
 
-    @Bean
+//    @Bean
     CommandLineRunner start(VehiclesService vheiculeService) {
         return args ->{
             Stream.of("BUS","MiniBus","Car").forEach(name->{
@@ -30,7 +30,7 @@ public class MiniProjGlogApplication {
 
                 vehicule.setVehicleId(randLong);
                 vehicule.setMarque(name);
-                vheiculeService.saveVheicule(vehicule);
+                vheiculeService.saveVehicule(vehicule);
             } );
         };
     }

@@ -2,6 +2,7 @@ package com.example.miniprojglog.services;
 
 import com.example.miniprojglog.entities.Vehicle;
 import com.example.miniprojglog.repository.VehicleRepo;
+import com.example.miniprojglog.services.Interfaces.VehiclesService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,32 +21,33 @@ public class VehicleServiceImpl implements VehiclesService {
     @Autowired
     private VehicleRepo vehicleRepo;
     @Override
-    public Vehicle saveVheicule(Vehicle vheicule) {
+    public Vehicle saveVehicule(Vehicle vheicule) {
         return vehicleRepo.save(vheicule);
     }
 
     @Override
-    public Vehicle updateVheicule(Vehicle vheicule) {
+    public Vehicle updateVehicule(Vehicle vheicule) {
         return vehicleRepo.save(vheicule);
     }
 
     @Override
-    public Vehicle deleteVheicule(Long matriculeV) {
+    public Vehicle deleteVehicule(Long matriculeV) {
         Vehicle deletedVehicle = vehicleRepo.getReferenceById(matriculeV);
         vehicleRepo.delete(deletedVehicle);
         return deletedVehicle;
     }
 
     @Override
-    public Optional<Vehicle> getVheiculebyId(Long id) {
+    public Optional<Vehicle> getVehiculebyId(Long id) {
         return vehicleRepo.findById(id);
     }
 
     @Override
-    public List<Vehicle> listvheicules() {
+    public List<Vehicle> listVehicules() {
 
         return vehicleRepo.findAll();
     }
+
 
     @Override
     public List<Vehicle> listOfAvailableVehicules() {

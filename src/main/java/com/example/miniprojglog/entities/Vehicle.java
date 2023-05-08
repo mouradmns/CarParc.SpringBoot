@@ -1,8 +1,6 @@
 package com.example.miniprojglog.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,16 +14,29 @@ import java.util.List;
 public class Vehicle {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long vehicleId;
-
     private String marque;
-
     private String modele;
 
-    private Boolean availableVehicle;
+    @Enumerated(EnumType.STRING)
+    ClassificationPermis permisClassification;
 
 
     @OneToMany(mappedBy = "vehicle")
     private List<Trip> trips;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private CarteGrise carteGrise;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Assurance assurance;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Vignette vignette;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private TechnicalVisit technicalVisit;
+
 
 }
