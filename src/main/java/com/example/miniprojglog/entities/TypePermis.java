@@ -18,7 +18,6 @@ public class TypePermis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTypePermis;
-
    private LocalDate ExpirationDate;
 
 

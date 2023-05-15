@@ -27,19 +27,24 @@ public class DisponibilityServiceImpl implements DisponibilityService {
 
     @Override
     public Driver disponibleDriver(Long driverId, LocalDate dateDebut, LocalDate dateFin) {
-//        return disponibilityRepo.disponibleDriver(driverId,dateDebut,dateFin);
-    return driverRepo.getReferenceById(driverId);
+        Driver dispD =disponibilityRepo.disponibleDriver(driverId,dateDebut,dateFin);
+        log.info("_------------------ disponible driver :"+dispD.toString());
+        return dispD;
+//    return driverRepo.getReferenceById(driverId);
     }
 
     @Override
     public List<Driver> disponibleDrivers(LocalDate dateDebut, LocalDate dateFin) {
         return disponibilityRepo.disponibleDrivers(dateDebut,dateFin);
+
     }
 
     @Override
     public Vehicle disponibleVehicle(Long vehiculeId, LocalDate dateDebut, LocalDate dateFin) {
-//        return disponibilityRepo.disponibleVehicle(driverId,dateDebut,dateFin);
-    return vehicleRepo.getReferenceById(vehiculeId);
+        Vehicle vehicleD= disponibilityRepo.disponibleVehicle(vehiculeId,dateDebut,dateFin);
+        log.info("_------------------ disponible vehicle :"+vehicleD.toString());
+        return disponibilityRepo.disponibleVehicle(vehiculeId,dateDebut,dateFin);
+//    return vehicleRepo.getReferenceById(vehiculeId);
     }
 
     @Override

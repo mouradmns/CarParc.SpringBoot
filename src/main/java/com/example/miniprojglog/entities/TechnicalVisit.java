@@ -20,6 +20,5 @@ public class TechnicalVisit {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long  TechnicalVisitId;
         private LocalDate StartDate;
-        private LocalDate ExpirationDate;
 
     }

@@ -33,7 +33,7 @@ public class AffectationController {
     @PostMapping("/affectation")
     public Trip affectation(@RequestBody AffectationDto affectationDto) throws DriverNotAvailableException, VehicleNotAvailableException, DriverNotConformedException, VehiculeNotConformedException {
         log.info("++++++++++++Starting date"+affectationDto.toString());
-        return affectationService.affectation(affectationDto.getStartDate(), affectationDto.getEndDate(), affectationDto.getDriverId().longValue(), affectationDto.getVehicleId().longValue(),affectationDto.getTypePermis());
+        return affectationService.affectation(affectationDto.getStartDate(), affectationDto.getEndDate(), affectationDto.getDriverId().longValue(), affectationDto.getVehicleId().longValue());
     }
 
 }

@@ -1,5 +1,7 @@
 package com.example.miniprojglog.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorColumn(name = "driver")
 public class Driver {
 
     @Id
@@ -30,10 +33,14 @@ public class Driver {
     private Permis permis;
 
 
+    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "driver")
-    private List<Trip> trips;
+    private List<Trip> tripsD;
 
     @OneToMany()
+    @JsonBackReference
+    @JsonIgnore
     private List<Repos> repos;
 
 }

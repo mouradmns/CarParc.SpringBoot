@@ -7,6 +7,7 @@ import com.example.miniprojglog.entities.Vehicle;
 import com.example.miniprojglog.exeptions.DriverNotAvailableException;
 import com.example.miniprojglog.exeptions.DriverNotConformedException;
 import com.example.miniprojglog.exeptions.VehicleNotAvailableException;
+import com.example.miniprojglog.repository.VehicleRepo;
 import com.example.miniprojglog.services.Interfaces.TripService;
 import com.example.miniprojglog.services.Interfaces.VehiclesService;
 import lombok.Builder;
@@ -29,21 +30,22 @@ public class AffectationServiceImpl {
     ConformityServiceImpl conformityService;
 
     VehiclesService vehicleService;
+    @Autowired
+    private VehicleRepo vehicleRepo;
 
-    public Trip affectation(LocalDate startDate, LocalDate endDate, Long driverId, Long vehicleId, ClassificationPermis typePermis) throws DriverNotAvailableException, VehicleNotAvailableException, DriverNotConformedException, VehiculeNotConformedException {
+    public Trip affectation(LocalDate startDate, LocalDate endDate, Long driverId, Long vehicleId) throws DriverNotAvailableException, VehicleNotAvailableException, DriverNotConformedException, VehiculeNotConformedException {
+
+          ClassificationPermis requiredPermis= vehicleRepo.getReferenceById(vehicleId).getPermisClassification();
 
          Driver disponibleDriver= conformityService.isDriverConforme(
                  disponibilityService.disponibleDriver(driverId,startDate,endDate),
                  startDate,
                  endDate,
-                 typePermis);
+                 requiredPermis);
 
 
          Vehicle dispovehicle= conformityService.isVehicleConforme(
-                 disponibilityService.disponibleVehicle(vehicleId,startDate,endDate),
-                 startDate,
-                 endDate,
-                 typePermis);
+                 disponibilityService.disponibleVehicle(vehicleId,startDate,endDate));
 
 
 
@@ -71,3 +73,4 @@ public class AffectationServiceImpl {
     }
 
 }
+ 

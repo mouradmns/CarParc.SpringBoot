@@ -31,15 +31,16 @@ public class ConformityServiceImpl {
     @Autowired
     DriverRepo driverRepo;
 
-    public List<Vehicle> ConformeVehicle(LocalDate date_debut, LocalDate date_fin, ClassificationPermis typePermis) {
+    public List<Vehicle> ConformeVehicle( ) {
         List<Vehicle> vehicles = vehicleRepo.findAll();
+        log.info("++++++++List of all vecs: " + vehicles.toString());
+        LocalDate currentDate = LocalDate.now();
         return vehicles.stream()
-                .filter( vehicle -> vehicle.getPermisClassification()== typePermis)
-//                .filter( vehicle -> vehicle.getCarteGrise().getCarteEndDate().isBefore(LocalDate.now()))
-//                .filter( vehicle -> vehicle.getAssurance().getAssuranceEndDate().isBefore(LocalDate.now()))
-//                .filter( vehicle -> vehicle.getTechnicalVisit().getExpirationDate().isBefore(LocalDate.now()))
-//                .filter( vehicle -> (vehicle.getTechnicalVisit().getExpirationDate().plusYears(1)).isBefore(LocalDate.now()))
-                .collect(toList());
+                .filter(vehicle -> vehicle.getCarteGrise().getCarteEndDate().isAfter(currentDate)
+                        && vehicle.getAssurance().getAssuranceEndDate().isAfter(currentDate)
+                        && vehicle.getTechnicalVisit().getStartDate().plusYears(1).isAfter(currentDate)
+                )
+                        .collect(toList());
     }
 
 
@@ -58,6 +59,7 @@ public class ConformityServiceImpl {
 
     public Driver isDriverConforme(Driver driver,LocalDate startDate, LocalDate endDate, ClassificationPermis typePermis) throws DriverNotConformedException {
         List<Driver> drivers = this.ConformeDrivers(startDate, endDate, typePermis);
+        log.info("++++++++List of conforme Drivers: " + drivers.toString());
         log.info(drivers.toString());
         Boolean found =drivers.stream().anyMatch(dr -> dr.equals(driver));
         if (found)
@@ -65,10 +67,10 @@ public class ConformityServiceImpl {
         throw  new DriverNotConformedException("this driver is not conformed");
     }
 
-    public Vehicle isVehicleConforme(Vehicle vehicle,LocalDate startDate, LocalDate endDate, ClassificationPermis typePermis) throws VehiculeNotConformedException {
-        List<Vehicle> ves = this.ConformeVehicle(startDate, endDate, typePermis);
-        log.info(ves.toString());
-        Boolean found =ves.stream().anyMatch(dr -> dr.equals(vehicle));
+    public Vehicle isVehicleConforme(Vehicle vehicle) throws VehiculeNotConformedException {
+        List<Vehicle> vecs = this.ConformeVehicle();
+        log.info("++++++++List of conforme vecs: " + vecs.toString());
+        Boolean found =vecs.stream().anyMatch(dr -> dr.equals(vehicle));
         if (found)
             return vehicle;
         throw new VehiculeNotConformedException("this vehicle is not conformed");

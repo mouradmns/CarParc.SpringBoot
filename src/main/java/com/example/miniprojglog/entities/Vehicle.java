@@ -1,5 +1,7 @@
 package com.example.miniprojglog.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorColumn(name = "vehicle")
 public class Vehicle {
 
     @Id
@@ -22,9 +25,10 @@ public class Vehicle {
     @Enumerated(EnumType.STRING)
     ClassificationPermis permisClassification;
 
-
+    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "vehicle")
-    private List<Trip> trips;
+    private List<Trip> tripsV;
 
     @OneToOne(cascade = CascadeType.ALL)
     private CarteGrise carteGrise;
