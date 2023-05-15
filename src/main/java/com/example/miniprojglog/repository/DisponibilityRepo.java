@@ -48,10 +48,10 @@ public interface DisponibilityRepo extends JpaRepository<Trip, Long> {
                                      @Param("dateFin") LocalDate dateFin);
 
 
-    @Query("SELECT DISTINCT v  FROM Vehicle v")
-//            " join v.tripsV " +
-//            " WHERE v.vehicleId =:matriculeC AND Driver  IN (SELECT Driver FROM Trip t" +
-//            " WHERE ((t.DateDebut <= :dateDebut AND t.DateFin <= :dateFin) OR (t.DateDebut <= :dateDebut AND t.DateFin <= :dateFin)) )")
+    @Query("SELECT DISTINCT v  FROM Vehicle v"+
+            " join v.tripsV " +
+            " WHERE v.vehicleId =:matriculeC AND Driver  IN (SELECT Driver FROM Trip t" +
+            " WHERE ((t.DateDebut <= :dateDebut AND t.DateFin <= :dateFin) OR (t.DateDebut <= :dateDebut AND t.DateFin <= :dateFin)) )")
     Vehicle disponibleVehicle(@Param("matriculeC") Long matriculeC,
                             @Param("dateDebut") LocalDate dateDebut,
                             @Param("dateFin") LocalDate dateFin);
