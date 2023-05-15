@@ -1,6 +1,4 @@
 package com.example.miniprojglog;
-
-
 import com.example.miniprojglog.security.auth.AuthenticationService;
 import com.example.miniprojglog.security.auth.RegisterRequest;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +14,7 @@ public class MiniProjGlogApplication {
     public static void main(String[] args) {
         SpringApplication.run(MiniProjGlogApplication.class, args);
     }
+
 
 @Bean
 public CommandLineRunner commandLineRunner(

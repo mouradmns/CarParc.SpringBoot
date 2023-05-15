@@ -3,16 +3,16 @@ package com.example.miniprojglog.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorColumn(name = "driver")
@@ -25,7 +25,7 @@ public class Driver {
     private String Cin;
     private String name;
     private String prenom;
-    private Date dateNaissance;
+    private LocalDate dateNaissance;
     private Date DateDebutTravail;
 
     @OneToOne(cascade = CascadeType.ALL)

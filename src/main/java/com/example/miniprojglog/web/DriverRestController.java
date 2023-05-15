@@ -17,6 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Slf4j
 @PreAuthorize("hasRole('ADMIN')")
+
 public class DriverRestController {
 
 
@@ -61,7 +62,7 @@ public class DriverRestController {
 
 
 
-    @DeleteMapping("/drivers/{id}")
+    @DeleteMapping("/drivers/{conducteurId}")
     public ResponseEntity<Driver> deleteConducteur(@PathVariable Long conducteurId) {
         Driver deletedCond= driverService.deleteDriver(conducteurId);
         return ResponseEntity.ok(deletedCond);
