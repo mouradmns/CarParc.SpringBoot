@@ -1,16 +1,15 @@
 package com.example.miniprojglog.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class TypePermis {
@@ -21,7 +20,7 @@ public class TypePermis {
    private LocalDate ExpirationDate;
 
 
-    @Enumerated(EnumType.STRING)
+         @Enumerated(EnumType.STRING)
         private ClassificationPermis typedePermis ;
 
 
