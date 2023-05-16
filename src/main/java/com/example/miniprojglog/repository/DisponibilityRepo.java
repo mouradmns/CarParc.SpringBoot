@@ -16,35 +16,19 @@ import java.util.UUID;
 @Repository
 public interface DisponibilityRepo extends JpaRepository<Trip, Long> {
 
-    @Query("SELECT DISTINCT Driver  FROM Driver d join d.tripsD t" +
-                " WHERE Driver  IN (SELECT Driver FROM Trip t " +
-            "WHERE ((t.DateDebut <= :dateDebut AND t.DateFin <= :dateFin) OR(t.DateDebut >= :dateDebut AND t.DateFin >= :dateFin) ))")
-        List<Driver> disponibleDrivers(@Param("dateDebut") LocalDate dateDebut,
-                                       @Param("dateFin") LocalDate dateFin);
-
-
-
+    //query to return a disponible driver
     @Query("SELECT DISTINCT d  FROM Driver d " +
             "WHERE d.driverId = :matriculeC " +
             "AND  d.driverId NOT In " +
             "(SELECT  t.driver.driverId FROM Trip t WHERE t.driver.driverId =:matriculeC " +
             " AND ((:dateDebut between t.DateDebut and t.DateFin) OR (:dateFin between t.DateDebut and t.DateFin)))"
-            )
-            Driver disponibleDriver(@Param("matriculeC") Long matriculeC,
+    )
+    Driver disponibleDriver(@Param("matriculeC") Long matriculeC,
                             @Param("dateDebut") LocalDate dateDebut,
                             @Param("dateFin") LocalDate dateFin);
 
 
-
-    @Query("SELECT  v  FROM Vehicle v join v.tripsV t" +
-            " WHERE Vehicle  IN (SELECT Vehicle FROM Trip t " +
-            "WHERE ((t.DateDebut <= :dateDebut AND t.DateFin <= :dateFin) OR(t.DateDebut >= :dateDebut AND t.DateFin >= :dateFin) ))")
-    List<Vehicle> disponibleVehicles(@Param("dateDebut") LocalDate dateDebut,
-                                     @Param("dateFin") LocalDate dateFin);
-
-
-
-
+    //query to return a disponible vehicle
     @Query("SELECT DISTINCT v FROM  Vehicle v" +
             " WHERE v.vehicleId = :matriculeV " +
             "AND  v.vehicleId NOT In " +
@@ -52,8 +36,38 @@ public interface DisponibilityRepo extends JpaRepository<Trip, Long> {
             " AND ((:dateDebut between t.DateDebut and t.DateFin) OR (:dateFin between t.DateDebut and t.DateFin)))"
     )
     Vehicle disponibleVehicle(@Param("matriculeV") Long matriculeV,
-                            @Param("dateDebut") LocalDate dateDebut,
-                            @Param("dateFin") LocalDate dateFin);
+                              @Param("dateDebut") LocalDate dateDebut,
+                              @Param("dateFin") LocalDate dateFin);
+
+
+
+
+
+
+
+    // list of all  disponible drivers :
+    @Query("SELECT  d  FROM Driver d " +
+            " Where  d.driverId NOT In " +
+            "(SELECT  t.driver.driverId FROM Trip t WHERE t.driver.driverId =:matriculeC " +
+            " AND ((:dateDebut between t.DateDebut and t.DateFin) OR (:dateFin between t.DateDebut and t.DateFin)))"
+    )
+    List<Driver> disponibleDrivers(@Param("dateDebut") LocalDate dateDebut,
+                                       @Param("dateFin") LocalDate dateFin);
+
+
+
+
+    // list of all  disponible Vehicles :
+    @Query("SELECT DISTINCT v FROM  Vehicle v" +
+            " WHERE  v.vehicleId NOT In " +
+            "(SELECT  t.vehicle.vehicleId FROM Trip t WHERE t.vehicle.vehicleId=:matriculeV " +
+            " AND ((:dateDebut between t.DateDebut and t.DateFin) OR (:dateFin between t.DateDebut and t.DateFin)))"
+    )
+    List<Vehicle> disponibleVehicles(@Param("dateDebut") LocalDate dateDebut,
+                                     @Param("dateFin") LocalDate dateFin);
+
+
+
 
 
 }

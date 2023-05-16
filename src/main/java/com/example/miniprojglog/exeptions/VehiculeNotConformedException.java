@@ -1,4 +1,4 @@
-package com.example.miniprojglog.services;
+package com.example.miniprojglog.exeptions;
 
 public class VehiculeNotConformedException extends Throwable {
     public VehiculeNotConformedException(String message) {

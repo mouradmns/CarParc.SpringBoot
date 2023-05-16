@@ -7,6 +7,7 @@ import com.example.miniprojglog.entities.Vehicle;
 import com.example.miniprojglog.exeptions.DriverNotAvailableException;
 import com.example.miniprojglog.exeptions.DriverNotConformedException;
 import com.example.miniprojglog.exeptions.VehicleNotAvailableException;
+import com.example.miniprojglog.exeptions.VehiculeNotConformedException;
 import com.example.miniprojglog.repository.VehicleRepo;
 import com.example.miniprojglog.services.Interfaces.TripService;
 import com.example.miniprojglog.services.Interfaces.VehiclesService;
@@ -15,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @Builder
@@ -39,13 +38,13 @@ public class AffectationServiceImpl {
 
          Driver disponibleDriver= conformityService.isDriverConforme(
                  disponibilityService.disponibleDriver(driverId,startDate,endDate),
-                 startDate,
                  endDate,
                  requiredPermis);
 
 
          Vehicle dispovehicle= conformityService.isVehicleConforme(
-                 disponibilityService.disponibleVehicle(vehicleId,startDate,endDate));
+                 disponibilityService.disponibleVehicle(vehicleId,startDate,endDate),
+                 endDate);
 
 
 
